@@ -16,7 +16,7 @@ public class Product {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private Long id;
     @Column(name = "title")
     private String title;
     @Column(name = "description")
@@ -27,8 +27,6 @@ public class Product {
     private String city;
     @Column(name = "price")
     private BigDecimal price;
-    @Column(name = "image")
-    private Image image;
 
     @Override
     public String toString() {
