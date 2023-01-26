@@ -15,20 +15,15 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig{
+public class SecurityConfig {
 
     private final CustomUserDetailsService userDetailsService;
 
     @Bean
-    public SecurityFilterChain config(HttpSecurity http) throws Exception {
-
-        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
-        AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
-
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/", "/product/**")
+                        .requestMatchers("/", "/products/**")
                         .permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form -> form
@@ -42,4 +37,10 @@ public class SecurityConfig{
         return new BCryptPasswordEncoder(8);
     }
 
+    @Bean
+    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
+        return authenticationManagerBuilder.build();
+    }
 }

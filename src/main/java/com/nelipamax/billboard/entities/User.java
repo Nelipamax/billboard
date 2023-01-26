@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "_user")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,10 +22,10 @@ public class User implements UserDetails {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @Column(name = "first_name")
-    private String firstName;
-    @Column(name = "second_name")
-    private String secondName;
+    @Column(name = "firstname")
+    private String firstname;
+    @Column(name = "lastname")
+    private String lastame;
     @Column(name = "email", unique = true)
     private String email;
     @Column(name = "phone")

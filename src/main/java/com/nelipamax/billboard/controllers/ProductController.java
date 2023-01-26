@@ -21,4 +21,9 @@ public class ProductController {
         model.addAttribute("products", products);
         return "products";
     }
+
+    @GetMapping("/")
+    public String index() {
+        return "index";
+    }
 }

@@ -5,6 +5,7 @@ import com.nelipamax.billboard.entities.User;
 import com.nelipamax.billboard.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public boolean createUser(User user) {
         if(userRepository.findByEmail(user.getEmail()) != null) return false;
