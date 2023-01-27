@@ -25,7 +25,7 @@ public class User implements UserDetails {
     @Column(name = "firstname")
     private String firstname;
     @Column(name = "lastname")
-    private String lastame;
+    private String lastname;
     @Column(name = "email", unique = true)
     private String email;
     @Column(name = "phone")
@@ -36,13 +36,14 @@ public class User implements UserDetails {
     private boolean active;
     @Column(name = "password", length = 1000)
     private String password;
-    @ElementCollection(targetClass = Role.class)
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role",
     joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
     @Column(name = "date_of_created")
     private LocalDateTime dateOfCreated;
+
 
     @PrePersist
     private void init() {
