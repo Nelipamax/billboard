@@ -18,24 +18,14 @@ public class UserController {
         return "login";
     }
 
- /*   @PostMapping("/login")
-    public String login () {
-        return "products";
-    }*/
-
     @GetMapping("/registration")
     public String registration() {
-        System.out.println("go to reg page");
         return "registration";
     }
 
     @PostMapping("/registration")
     public String create(User user) {
-        System.out.println("reg request in");
         userService.createUser(user);
-        System.out.println("after method");
         return "redirect: /login";
     }
-
-
 }

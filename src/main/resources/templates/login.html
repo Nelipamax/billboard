@@ -5,12 +5,13 @@
     <title>Вход</title>
 </head>
 <body>
-<h1>Добро пожаловать на Billboard</h1>
+<div th:insert="default-head::header"></div>
 <h2>Войдите чтобы продолжить</h2>
 <form action="/login" method="post">
-    E-mail: <input name="username" type="email">
-    Пароль: <input name="password" type="password">
-    <input type = "submit" value = "Войти">
+    E-mail: <input name="username" type="email"><br>
+    Пароль: <input name="password" type="password"><br><br>
+    <input type = "submit" value = "Войти"><br><br>
+    <a href="/registration">Зарегистрироваться</a>
 </form>
 </body>
 </html>
